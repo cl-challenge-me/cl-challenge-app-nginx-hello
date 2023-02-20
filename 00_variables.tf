@@ -8,6 +8,11 @@ variable "env" {
   type        = string
 }
 
+variable "app_name" {
+  description = "Application name"
+  type        = string
+}
+
 variable "folder_id" {
   description = "Parent folder ID"
   type        = string

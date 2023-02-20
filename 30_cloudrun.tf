@@ -1,7 +1,7 @@
 resource "google_cloud_run_service" "nginx-hello" {
   provider = google-beta
   project  = module.project-nginx-hello.project_id
-  name     = "nginx-hello"
+  name     = var.app_name
   location = var.region
 
   template {
@@ -32,7 +32,7 @@ resource "google_cloud_run_service" "nginx-hello" {
     annotations = {
       # For valid annotation values and descriptions, see
       # https://cloud.google.com/sdk/gcloud/reference/run/deploy#--ingress
-      "run.googleapis.com/ingress" = "all"
+      "run.googleapis.com/ingress" = "internal-and-cloud-load-balancing"
     }
   }
 
