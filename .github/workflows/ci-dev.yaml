@@ -1,17 +1,14 @@
 name: 'Infra - Dev'
 on:
-  push: 
+  push:
     branches:
-    - dev
-    path:
-    - 'terraform/*'
-    - '.github/workflows/ci-dev.yml'
+    - feature/*
+    - bugfix/*
+    - hotfix/*
+
   pull_request:
     branches:
     - dev
-    path:
-    - 'terraform/*'
-    - '.github/workflows/ci-dev.yml'
 
 jobs:
   terraform:
