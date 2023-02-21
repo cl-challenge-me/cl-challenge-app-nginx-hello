@@ -13,5 +13,5 @@ module "project-nginx-hello" {
   services        = local.services
   billing_account = var.billing_account
   region          = var.region
-  ip_cidr_range   = var.ip_cidr_range
+  ip_cidr_range   = cidrsubnet(var.project_ip_cidr_range, 4, 0)
 }
