@@ -30,7 +30,7 @@ resource "google_compute_service_attachment" "producer_service_attachment" {
   connection_preference = "ACCEPT_MANUAL"
   consumer_accept_lists {
     project_id_or_num = data.terraform_remote_state.infra.outputs.project_id
-    connection_limit  = 0
+    connection_limit  = 10
   }
   nat_subnets           = [google_compute_subnetwork.psc_producer_subnet.name]
   target_service        = google_compute_forwarding_rule.ilb.id
