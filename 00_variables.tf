@@ -24,6 +24,6 @@ variable "billing_account" {
 }
 
 variable "project_ip_cidr_range" {
-  description = "Project IP /24 subnet (used for different services)"
+  description = "Project IP /24 subnet (subnet is used for different services internally)"
   type        = string
 }

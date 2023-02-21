@@ -1,15 +1,14 @@
 resource "google_compute_firewall" "default" {
   project     = module.project-nginx-hello.project_id
-  name        = "access-ilb"
+  name        = "access-iap"
   network     = module.project-nginx-hello.network_id
-  description = "Allow GFE access to ILB"
+  description = "Allow IAM access to VMs"
 
   source_ranges = [
-    "130.211.0.0/22", 
-    "35.191.0.0/16"
+    "35.235.240.0/20"
   ]
   allow {
     protocol = "tcp"
-    ports    = ["443"]
+    ports    = ["22"]
   }
 }

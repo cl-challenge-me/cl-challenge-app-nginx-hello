@@ -6,8 +6,7 @@ locals {
 }
 
 module "project-nginx-hello" {
-  source = "../cl-challenge-base-project"
-  # "git@github.com:pavelrn/cl-challenge-base-project.git?ref=v1.3"
+  source          = "git@github.com:pavelrn/cl-challenge-base-project.git?ref=v1.5"
   name            = "${var.app_name}-${var.env}"
   folder_id       = var.folder_id
   services        = local.services

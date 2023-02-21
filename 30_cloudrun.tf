@@ -6,6 +6,7 @@ resource "google_cloud_run_service" "nginx-hello" {
 
   template {
     spec {
+      service_account_name = google_service_account.cloudrun_sa.email
       containers {
         image = "gcr.io/google-samples/hello-app:1.0"
 
