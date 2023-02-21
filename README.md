@@ -7,6 +7,11 @@ In this repo you will find Terraform code that deloys the following infrastrustu
 - Global L7 load-balancer that provides external access to the Cloud Run serverless NEG
 - WAF service based on Cloud Armor policy attached to the load-balancer 
 - Sample Compute Engine VM with IAP access (for demonstration)
+
+# Diagram
+
+![image](diagram/nginx-hello_challenge.png)
+
 # How to use
 ## Dev
 ```
