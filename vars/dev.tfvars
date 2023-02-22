@@ -1,6 +1,6 @@
 env                   = "dev"
+folder_id             = "folders/671788947241"
 region                = "europe-north1"
 app_name              = "nginx-hello"
-folder_id             = "folders/671788947241"
 billing_account       = "011168-59E2C9-06B012"
 project_ip_cidr_range = "10.10.101.0/24"
