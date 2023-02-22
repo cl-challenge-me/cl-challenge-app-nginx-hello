@@ -57,12 +57,12 @@ jobs:
 
     - name: Terraform Init
       id: init
-      run: terraform init -backend-config="bucket=${{ inputs.tf_state_bucket }}" -var-file=${{ inputs.env }}.tfvars
+      run: terraform init -backend-config="bucket=${{ inputs.tf_state_bucket }}" -var-file=vars/${{ inputs.env }}.tfvars
       shell: bash
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -input=false -var-file=${{ inputs.env }}.tfvars -no-color -out tf.plan
+      run: terraform plan -input=false -var-file=vars/${{ inputs.env }}.tfvars -no-color -out tf.plan
       shell: bash
 
     - name: Saving "terraform show"
