@@ -3,10 +3,7 @@ name: 'Infra - Stage'
 on:
   pull_request:
     branches:
-    - main
-    path:
-    - 'terraform/*'
-    - '.github/workflows/ci-dev.yml'
+    - stage
 
 jobs:
   terraform:
