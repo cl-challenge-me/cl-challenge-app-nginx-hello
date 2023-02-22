@@ -1,5 +1,9 @@
 data "google_compute_zones" "available" {
   project = module.project-nginx-hello.project_id
+
+  depends_on = [
+    module.project-nginx-hello
+  ]
 }
 
 # Compute instance helper VM

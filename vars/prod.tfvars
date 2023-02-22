@@ -1,5 +1,5 @@
-env       = "prod"
-folder_id = "folders/2408362017"
+env                   = "prod"
+folder_id             = "folders/87661246516"
 region                = "europe-north1"
 app_name              = "nginx-hello"
 billing_account       = "011168-59E2C9-06B012"

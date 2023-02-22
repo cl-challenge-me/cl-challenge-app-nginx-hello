@@ -3,4 +3,8 @@ module "cloud-ep-dns" {
   project     = module.project-nginx-hello.project_id
   name        = var.app_name
   external_ip = google_compute_global_address.lb-fe-ip.address
+
+  depends_on = [
+    module.project-nginx-hello
+  ]
 }
