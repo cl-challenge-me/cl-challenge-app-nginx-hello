@@ -1,5 +1,5 @@
-env       = "stage"
-folder_id = "folders/1045823747802"
+env                   = "stage"
+folder_id             = "folders/919780079509"
 region                = "europe-north1"
 app_name              = "nginx-hello"
 billing_account       = "011168-59E2C9-06B012"
