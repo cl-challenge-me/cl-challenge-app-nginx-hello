@@ -6,7 +6,7 @@ locals {
 }
 
 module "project-nginx-hello" {
-  source          = "git::ssh://git@github.com/cl-challenge-me/cl-challenge-base-project.git?ref=v1.5"
+  source          = "github.com/cl-challenge-me/cl-challenge-base-project.git?ref=v1.5"
   name            = "${var.app_name}-${var.env}"
   folder_id       = var.folder_id
   services        = local.services
