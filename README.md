@@ -45,9 +45,9 @@ The IP range specified in `vm_ip_cidr_range` variable is split into /28 subnets:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.52.0 |
-| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 4.52.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
+| <a name="provider_google"></a> [google](#provider\_google) | =4.52.0 |
+| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | =4.52.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
 
@@ -82,7 +82,7 @@ The IP range specified in `vm_ip_cidr_range` variable is split into /28 subnets:
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | Billing account ID | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | Short environment name (dev, stage, prod) | `string` | n/a | yes |
 | <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | Parent folder ID | `string` | n/a | yes |
-| <a name="input_regions"></a> [regions](#input\_regions) | Regions where the applications are deployed | `list(string)` | n/a | yes |
+| <a name="input_regions"></a> [regions](#input\_regions) | Regions where the application instances are deployed | `list(string)` | n/a | yes |
 | <a name="input_vm_ip_cidr_range"></a> [vm\_ip\_cidr\_range](#input\_vm\_ip\_cidr\_range) | Project IP range used for VMs, le /24 (IP range is split across regions) | `string` | n/a | yes |
 
 ## Outputs
