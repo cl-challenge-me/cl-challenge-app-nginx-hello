@@ -1,10 +1,10 @@
 # About
 In this repo you will find Terraform code that deloys the following infrastrusture elements:
-- GCP project in specified folder
-- Cloud Run service for nginx-hello containerized application
+- GCP project in specified parent folder
+- Cloud Run service for nginx-hello containerized application distributed over 2 regions
 - Cloud Endpoint gateway to get `xxx.cloud.goog` DNS record
 - Google-managed SSL certificate for `xxx.cloud.goog` name
-- Global L7 load-balancer that provides external access to the Cloud Run serverless NEG
+- Global L7 load-balancer that provides external access to the Cloud Run serverless NEGs
 - WAF service based on Cloud Armor policy attached to the load-balancer 
 - Sample Compute Engine VM with IAP access (for demonstration)
 
@@ -29,6 +29,9 @@ terraform init -backend-config="bucket=cl-challenge-prod"
 terraform apply -var-file=vars/prod.tfvars
 ```
 
+# A note on IP addressing
+The IP range specified in `vm_ip_cidr_range` variable is split into /28 subnets: 1 subnet per region. Specify `vm_ip_cidr_range` and the number of regions accordingly.
+
 # Details
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -42,10 +45,9 @@ terraform apply -var-file=vars/prod.tfvars
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.52.0 |
-| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 4.52.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
-| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+| <a name="provider_google"></a> [google](#provider\_google) | =4.52.0 |
+| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | =4.52.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
 
@@ -54,7 +56,7 @@ terraform apply -var-file=vars/prod.tfvars
 | <a name="module_cloud-ep-dns"></a> [cloud-ep-dns](#module\_cloud-ep-dns) | terraform-google-modules/endpoints-dns/google | n/a |
 | <a name="module_cloud_armor"></a> [cloud\_armor](#module\_cloud\_armor) | GoogleCloudPlatform/cloud-armor/google | n/a |
 | <a name="module_gce-lb-http"></a> [gce-lb-http](#module\_gce-lb-http) | GoogleCloudPlatform/lb-http/google | 7.0.0 |
-| <a name="module_project-nginx-hello"></a> [project-nginx-hello](#module\_project-nginx-hello) | git@github.com:pavelrn/cl-challenge-base-project.git | v1.5 |
+| <a name="module_project"></a> [project](#module\_project) | github.com/cl-challenge-me/cl-challenge-base-project | v1.6 |
 
 ## Resources
 
@@ -69,8 +71,8 @@ terraform apply -var-file=vars/prod.tfvars
 | [google_service_account.cloudrun_sa](https://registry.terraform.io/providers/hashicorp/google/4.52.0/docs/resources/service_account) | resource |
 | [google_service_account.vm_sa](https://registry.terraform.io/providers/hashicorp/google/4.52.0/docs/resources/service_account) | resource |
 | [random_id.suffix](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
+| [random_id.vm](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 | [google_compute_zones.available](https://registry.terraform.io/providers/hashicorp/google/4.52.0/docs/data-sources/compute_zones) | data source |
-| [terraform_remote_state.infra](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
 
@@ -80,12 +82,12 @@ terraform apply -var-file=vars/prod.tfvars
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | Billing account ID | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | Short environment name (dev, stage, prod) | `string` | n/a | yes |
 | <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | Parent folder ID | `string` | n/a | yes |
-| <a name="input_project_ip_cidr_range"></a> [project\_ip\_cidr\_range](#input\_project\_ip\_cidr\_range) | Project IP /24 subnet (subnet is used for different services internally) | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | Region to deploy infrastructure and applications | `string` | n/a | yes |
+| <a name="input_regions"></a> [regions](#input\_regions) | Regions where the application instances are deployed | `list(string)` | n/a | yes |
+| <a name="input_vm_ip_cidr_range"></a> [vm\_ip\_cidr\_range](#input\_vm\_ip\_cidr\_range) | Project IP range used for VMs, le /24 (IP range is split across regions) | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_message"></a> [message](#output\_message) | Convenience message |
+| <a name="output_convenience_message"></a> [convenience\_message](#output\_convenience\_message) | Convenience message |
 <!-- END_TF_DOCS -->
