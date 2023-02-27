@@ -1,7 +1,7 @@
 resource "google_compute_firewall" "default" {
-  project     = module.project-nginx-hello.project_id
+  project     = module.project.project_id
   name        = "access-iap"
-  network     = module.project-nginx-hello.network_id
+  network     = module.project.network_id
   description = "Allow IAM access to VMs"
 
   source_ranges = [

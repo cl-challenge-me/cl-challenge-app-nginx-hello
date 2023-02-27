@@ -1,8 +1,9 @@
 resource "google_cloud_run_service" "nginx-hello" {
+  for_each = toset(var.regions)
   provider = google-beta
-  project  = module.project-nginx-hello.project_id
+  project  = module.project.project_id
   name     = var.app_name
-  location = var.region
+  location = each.key
 
   template {
     spec {
@@ -38,15 +39,15 @@ resource "google_cloud_run_service" "nginx-hello" {
   }
 
   depends_on = [
-    module.project-nginx-hello
+    module.project
   ]
 }
 
-
 resource "google_cloud_run_service_iam_member" "all_users" {
-  project  = module.project-nginx-hello.project_id
-  service  = google_cloud_run_service.nginx-hello.name
-  location = google_cloud_run_service.nginx-hello.location
+  for_each = toset(var.regions)
+  project  = module.project.project_id
+  service  = google_cloud_run_service.nginx-hello[each.key].name
+  location = google_cloud_run_service.nginx-hello[each.key].location
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
