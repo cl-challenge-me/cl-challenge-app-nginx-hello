@@ -33,3 +33,6 @@ override.tf.json
 terraform.rc
 
 .terraform.lock.hcl
+
+
+.ipynb_checkpoints/
