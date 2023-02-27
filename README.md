@@ -1,6 +1,6 @@
 # About
 In this repo you will find Terraform code that deloys the following infrastrusture elements:
-- GCP project in specified folder
+- GCP project in specified parent folder
 - Cloud Run service for nginx-hello containerized application distributed over 2 regions
 - Cloud Endpoint gateway to get `xxx.cloud.goog` DNS record
 - Google-managed SSL certificate for `xxx.cloud.goog` name
@@ -28,6 +28,9 @@ terraform apply -var-file=vars/stage.tfvars
 terraform init -backend-config="bucket=cl-challenge-prod"
 terraform apply -var-file=vars/prod.tfvars
 ```
+
+# A note on IP addressing
+The IP range specified in `vm_ip_cidr_range` variable is split into /28 subnets: 1 subnet per region. Specify `vm_ip_cidr_range` and the number of regions accordingly.
 
 # Details
 <!-- BEGIN_TF_DOCS -->

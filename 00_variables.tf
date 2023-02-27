@@ -1,5 +1,5 @@
 variable "regions" {
-  description = "Regions where the applications are deployed"
+  description = "Regions where the application instances are deployed"
   type        = list(string)
 }
 
