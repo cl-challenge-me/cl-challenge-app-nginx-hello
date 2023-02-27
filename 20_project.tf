@@ -6,8 +6,7 @@ locals {
 }
 
 module "project" {
-  source = "../cl-challenge-base-project"
-  # "github.com/cl-challenge-me/cl-challenge-base-project?ref=v1.6"
+  source = "github.com/cl-challenge-me/cl-challenge-base-project?ref=v1.6"
   name            = "${var.app_name}-${var.env}"
   folder_id       = var.folder_id
   services        = local.services
