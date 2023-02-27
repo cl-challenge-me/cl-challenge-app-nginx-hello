@@ -5,7 +5,7 @@ resource "random_id" "suffix" {
 module "cloud_armor" {
   source = "GoogleCloudPlatform/cloud-armor/google"
 
-  project_id                  = module.project-nginx-hello.project_id
+  project_id                  = module.project.project_id
   name                        = "policy-${random_id.suffix.hex}"
   default_rule_action         = "allow"
   type                        = "CLOUD_ARMOR"

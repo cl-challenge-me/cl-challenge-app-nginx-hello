@@ -5,6 +5,10 @@ on:
     - dev
 
 jobs:
+  doc:
+    name: "Documentation"
+    uses: "./.github/workflows/documentation.yaml"
+    
   terraform:
     name: "Dev deploy"
     uses: "./.github/workflows/terraform-deploy.yaml"

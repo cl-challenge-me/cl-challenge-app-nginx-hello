@@ -1,16 +1,17 @@
 resource "google_compute_region_network_endpoint_group" "cloudrun_neg" {
-  project               = module.project-nginx-hello.project_id
-  name                  = "${var.app_name}-neg"
+  for_each              = toset(var.regions)
+  project               = module.project.project_id
+  name                  = "${var.app_name}-neg-${each.key}"
   network_endpoint_type = "SERVERLESS"
   cloud_run {
-    service = google_cloud_run_service.nginx-hello.name
+    service = google_cloud_run_service.nginx-hello[each.key].name
   }
-  region = var.region
+  region = each.key
 }
 
 resource "google_compute_global_address" "lb-fe-ip" {
   provider   = google-beta
-  project    = module.project-nginx-hello.project_id
+  project    = module.project.project_id
   name       = "l7-lb-fe-ip"
   ip_version = "IPV4"
 }
@@ -19,7 +20,7 @@ module "gce-lb-http" {
   source  = "GoogleCloudPlatform/lb-http/google"
   version = "7.0.0"
 
-  project        = module.project-nginx-hello.project_id
+  project        = module.project.project_id
   name           = "global-l7-lb"
   ssl            = true
   https_redirect = true
@@ -58,9 +59,10 @@ module "gce-lb-http" {
       }
 
       groups = [
+        for neg in google_compute_region_network_endpoint_group.cloudrun_neg :
         {
           # Each node pool instance group should be added to the backend.
-          group                        = google_compute_region_network_endpoint_group.cloudrun_neg.id
+          group                        = neg.id
           balancing_mode               = null
           capacity_scaler              = null
           description                  = null
@@ -72,7 +74,7 @@ module "gce-lb-http" {
           max_rate_per_endpoint        = null
           max_utilization              = null
           health_check                 = null
-        },
+        }
       ]
 
       iap_config = {
