@@ -48,9 +48,9 @@ The IP range specified in `vm_ip_cidr_range` variable is split into /28 subnets:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.52.0 |
-| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 4.52.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
+| <a name="provider_google"></a> [google](#provider\_google) | =4.52.0 |
+| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | =4.52.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 | <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
