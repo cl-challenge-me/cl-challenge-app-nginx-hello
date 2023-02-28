@@ -32,3 +32,4 @@ variable "proxy_ip_cidr_range" {
   description = "Project IP range used for proxy-only subnets, le /24 (IP range is split across regions)"
   type        = string
 }
+

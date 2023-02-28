@@ -32,6 +32,9 @@ terraform apply -var-file=vars/prod.tfvars
 ## Load balancer endpoint
 Check Terraform output to find out what is the load balancer endpoint.
 
+# A note on IP addressing
+The IP range specified in `vm_ip_cidr_range` variable is split into /28 subnets: 1 subnet per region. Specify `vm_ip_cidr_range` and the number of regions accordingly.
+
 # Details
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -47,6 +50,7 @@ Check Terraform output to find out what is the load balancer endpoint.
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | 4.52.0 |
 | <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 4.52.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
 | <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
@@ -69,6 +73,7 @@ Check Terraform output to find out what is the load balancer endpoint.
 | [google_compute_subnetwork.psc_producer_subnet](https://registry.terraform.io/providers/hashicorp/google/4.52.0/docs/resources/compute_subnetwork) | resource |
 | [google_service_account.cloudrun_sa](https://registry.terraform.io/providers/hashicorp/google/4.52.0/docs/resources/service_account) | resource |
 | [google_service_account.vm_sa](https://registry.terraform.io/providers/hashicorp/google/4.52.0/docs/resources/service_account) | resource |
+| [random_id.vm](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 | [google_compute_zones.available](https://registry.terraform.io/providers/hashicorp/google/4.52.0/docs/data-sources/compute_zones) | data source |
 | [terraform_remote_state.infra](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
