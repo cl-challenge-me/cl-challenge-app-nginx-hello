@@ -35,5 +35,4 @@ terraform.rc
 .terraform.lock.hcl
 
 
-# Notebook
 .ipynb_checkpoints/

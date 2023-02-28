@@ -1,6 +1,6 @@
 variable "regions" {
-  description = "Regions where the application instances are deployed"
-  type        = list(string)
+  description = "Regions to deploy applications"
+  type        = list(any)
 }
 
 variable "env" {
@@ -25,6 +25,11 @@ variable "billing_account" {
 
 variable "vm_ip_cidr_range" {
   description = "Project IP range used for VMs, le /24 (IP range is split across regions)"
+  type        = string
+}
+
+variable "proxy_ip_cidr_range" {
+  description = "Project IP range used for proxy-only subnets, le /24 (IP range is split across regions)"
   type        = string
 }
 
