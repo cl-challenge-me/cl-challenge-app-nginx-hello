@@ -29,6 +29,8 @@ terraform apply -var-file=vars/stage.tfvars
 terraform init -backend-config="bucket=cl-challenge-prod"
 terraform apply -var-file=vars/prod.tfvars
 ```
+## Load balancer endpoint
+Check Terraform output to find out what is the load balancer endpoint.
 
 # Details
 <!-- BEGIN_TF_DOCS -->
